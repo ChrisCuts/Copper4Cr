@@ -253,6 +253,7 @@ Copper.ToolbarAdapter.doDiscover = function(){
     let coapMessage = new Copper.CoapMessage(Copper.CoapMessage.Type.getType(Copper.Session.settings.requests), Copper.CoapMessage.Code.GET);
 	coapMessage.addOption(Copper.CoapMessage.OptionHeader.URI_PATH, ".well-known");
 	coapMessage.addOption(Copper.CoapMessage.OptionHeader.URI_PATH, "core");
+	coapMessage.addOption(Copper.CoapMessage.OptionHeader.ACCEPT, 40);
     Copper.ToolbarAdapter.ongoingDiscoverRequest = true;
     let toolbarIcon = document.getElementById("copper-toolbar-discover").firstElementChild;
     toolbarIcon.src = "skin/spinner.gif";
