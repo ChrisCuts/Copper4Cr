@@ -181,12 +181,30 @@ Copper.CoapMessageSerializer.serializeOption = function(serMsg, offset, optDelta
 		serMsg.set(new Uint8Array(buf), offset+resSz);
 		resSz += buf.byteLength;
 	}
+	else if (deltaNibble == 13){
+		serMsg.set(new Uint8Array([0]), offset+resSz);
+		resSz += 1;
+	}
+	else if (deltaNibble == 14){
+		serMsg.set(new Uint8Array([0, 0]), offset+resSz);
+		resSz += 2;
+	}
+
 	let resValSize = optValSize - valNibble;
 	if (resValSize > 0){
 		let buf = Copper.ByteUtils.convertUintToBytes(resValSize);
 		serMsg.set(new Uint8Array(buf), offset+resSz);
 		resSz += buf.byteLength;
 	}
+	else if (valNibble == 13){
+		serMsg.set(new Uint8Array([0]), offset+resSz);
+		resSz += 1;
+	}
+	else if (valNibble == 14){
+		serMsg.set(new Uint8Array([0, 0]), offset+resSz);
+		resSz += 2;
+	}
+
 	serMsg.set(new Uint8Array(optVal), offset+resSz);
 	return resSz + optValSize;
 };
